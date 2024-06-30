@@ -1,4 +1,7 @@
+import React from 'react';
+import { Root, createRoot } from 'react-dom/client';
 import { differenceInDays } from "date-fns";
+import { ComicInterface as ci, Comic } from './components';
 
 interface ComicInterface {
     alt: string,
@@ -15,10 +18,13 @@ interface ComicInterface {
 }
 
 const init = (async () => {
-    const title: HTMLElement | null = document.getElementById('title')
-    const img: HTMLElement | null = document.getElementById('comic')
-    const date: HTMLElement | null = document.getElementById('date')
-    const daysAgo: HTMLElement | null = document.getElementById('daysAgo')
+    const rootEl: HTMLElement | null = document.getElementById('root')
+    console.log(rootEl)
+    if (!rootEl) return;
+    const root: Root = createRoot(rootEl);
+
+    const Title = <div id="title">Title</div>;
+    root.render(<Comic title='Title' src='' date='Date' days='' />)
 
     let idRes: Response = await fetch('https://fwd.innopolis.university/api/hw2?' + new URLSearchParams({
         email: 'e.savchenko@innopolis.university'
@@ -33,11 +39,8 @@ const init = (async () => {
     let comic: ComicInterface = JSON.parse(await comicRes.text())
     console.log(comic)
 
-    if (title) title.textContent = comic.safe_title
-    if (img) img.setAttribute('src', comic.img)
     let d: Date = new Date(Number(comic.year), Number(comic.month), Number(comic.day))
-    if (date) date.textContent = d.toLocaleDateString()
-    if (daysAgo) daysAgo.textContent = String(differenceInDays(new Date(), d))
+    root.render(<Comic title={comic.safe_title} src={comic.img} date={d.toLocaleDateString()} days={String(differenceInDays(new Date(), d))} />)
 })
 
 window.onload = init
