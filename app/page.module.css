@@ -1,0 +1,9 @@
+.mono {
+  font-family: "Courier New", Courier;
+  list-style-type: circle;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+}

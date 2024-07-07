@@ -1,0 +1,13 @@
+#hText {
+    position: relative;
+    margin: auto;
+    font-size: 30px;
+    font-family: "Comic Sans MS", "Comic Sans";
+}
+
+.box {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
