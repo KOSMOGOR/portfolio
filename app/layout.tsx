@@ -3,7 +3,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Portfolio"
+  title: "Portfolio",
+  description: "Simple portfolio site",
+  authors: { name: "KOSMOGOR" },
+  icons: "https://moodle.innopolis.university/theme/image.php/academi/theme/1716928122/favicon"
 };
 
 export default function RootLayout({
